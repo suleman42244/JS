@@ -30,7 +30,9 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-window.location.reload();
+setTimeout(() => {
+  document.location.reload();
+}, 3000);
 const getPlayerSelection = playerSelection();
 const computerSelection = getComputerChoice();
 console.log(`Player chosse: ${getPlayerSelection}`);
