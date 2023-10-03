@@ -1,3 +1,3 @@
-# JS
+# Rock Paper Scissor
 
-I will upload all the project related to JS in this repo 
+I'm making this game. It's challenge on TheOdingProject
