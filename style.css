@@ -14,7 +14,9 @@ body{
 .title{
     text-align: center;
 }
-
+.choice-image.pressed{
+    transform: translateY(4px);
+}
 img{
     width: 150px;
     background-color: #D7CABB;
@@ -27,4 +29,18 @@ img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.robot-choice{
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    margin-top: 40px;
+    background-color: #E5E8E8;
+    justify-content: center;
+    align-items: center;
+}
+
+.result{
+    text-align: center;
+    margin: 40px;
 }
