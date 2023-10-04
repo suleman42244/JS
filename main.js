@@ -1,40 +1,51 @@
-function playerSelection() {
-  playerChoice = String(prompt("Please enter your choice:")).toLowerCase();
-  return playerChoice;
+const robotChoices = ["Rock", "Paper", "Scissors"];
+
+function randomRobotChoice() {
+  const robotOption = Math.floor(Math.random() * robotChoices.length);
+  return robotChoices[robotOption];
 }
 
 
-function getComputerChoice() {
-  let computerChoice = Math.round(Math.random() * 2);
-  if(computerChoice === 0){
-    return "rock"
-  } else if(computerChoice === 1){
-    return "paper"
-  } else if(computerChoice === 2){
-    return "scissors"
-  }
+function determineResults(playerChoose, robotChoice){
+  if(playerChoose === robotChoice){
+    return 'Tie!'
+  }  else if (
+    (playerChoose === 'rock' && robotChoice === 'scissors') ||
+    (playerChoose === 'paper' && robotChoice === 'rock') ||
+    (playerChoose === 'scissors' && robotChoice === 'paper')
+) {
+  return 'Player win';
+} else{
+  return 'Robot win';
 }
-getComputerChoice();
-
-function playRound(playerSelection, computerSelection){
-    if(playerSelection === computerSelection){
-      return "it's a tie";
-    } else if(
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
-    ){
-      return "You win";
-    } else{
-      return "Computer win";
-    }
 }
 
-setTimeout(() => {
-  document.location.reload();
-}, 5000);
-const getPlayerSelection = playerSelection();
-const computerSelection = getComputerChoice();
-console.log(`Player chosse: ${getPlayerSelection}`);
-console.log(`Computer choose: ${computerSelection}`)
-console.log(playRound(getPlayerSelection, computerSelection))
+
+function updateGame(playerChoose) {
+  const robotChoice = randomRobotChoice();
+  const robotElement = document.querySelector("#robot-choice");
+  const resultTextElement = document.querySelector('.result-element');
+  robotElement.textContent = robotChoice;
+
+  const result = determineResults(playerChoose, robotChoice.toLowerCase())
+
+  
+  resultTextElement.textContent = `${result}`;
+}
+
+
+const playerChoice = document.querySelectorAll(".choice-image");
+playerChoice.forEach((Image) => {
+  Image.addEventListener("click", () => {
+    const playerChoose = Image.classList.contains("rock")
+      ? "rock"
+      : Image.classList.contains("paper")
+      ? 'paper'
+      : 'scissors';
+    Image.classList.add("pressed");
+    updateGame(playerChoose);
+    setTimeout(() => {
+      Image.classList.remove("pressed");
+    }, 200);
+  });
+});
