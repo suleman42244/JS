@@ -14,9 +14,9 @@ function determineResults(playerChoose, robotChoice){
     (playerChoose === 'paper' && robotChoice === 'rock') ||
     (playerChoose === 'scissors' && robotChoice === 'paper')
 ) {
-  return 'Player win';
+  return 'You won';
 } else{
-  return 'Robot win';
+  return 'Robot won';
 }
 }
 
